@@ -17,23 +17,29 @@ in {
   };
 
   config =
-    (lib.optionalAttrs isHM {
+    {}
+    // lib.optionalAttrs isHM {
       home-manager.users.${username} = lib.mkAliasDefinitions options.hm;
-    })
-    // (lib.mkIf isHM {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
+    };
 
-        users.${username} = {
-          programs.home-manager.enable = true;
+  imports = [
+    {
+      config = lib.mkIf isHM {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
 
-          home = {
-            username = username;
-            homeDirectory = "/home/${username}";
-            stateVersion = config.system.stateVersion;
+          users.${username} = {
+            programs.home-manager.enable = true;
+
+            home = {
+              username = username;
+              homeDirectory = "/home/${username}";
+              stateVersion = config.system.stateVersion;
+            };
           };
         };
       };
-    });
+    }
+  ];
 }
