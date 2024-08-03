@@ -35,7 +35,6 @@
       && !config.boot.isContainer
       && !config.boot.growPartition
       && !config.services.lvm.boot.thin.enable
-      && config.boot.initrd.postMountCommands == ""
     );
 
     documentation.info.enable = false;
