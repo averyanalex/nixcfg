@@ -1,0 +1,27 @@
+{
+  "nodes": {
+    "root": {
+      "inputs": {
+        "srvos": "srvos"
+      }
+    },
+    "srvos": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1722473484,
+        "narHash": "sha256-gl0NnSdNwjuAgIHfmGSVx/2jKHNfN5ie8Ex6OTjfczY=",
+        "owner": "nix-community",
+        "repo": "srvos",
+        "rev": "46a59095dc9228a945bf1ee8160b397eb502ad6c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "srvos",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

@@ -1,0 +1,69 @@
+{
+  pkgs,
+  config,
+  ...
+}: {
+  nix = {
+    settings = {
+      experimental-features = [
+        "auto-allocate-uids"
+        "ca-derivations"
+        "cgroups"
+        "flakes"
+        "nix-command"
+      ];
+
+      # use temp uid for builds instead of nixbld* users
+      auto-allocate-uids = true;
+      # same files hardlinking for /nix/store
+      auto-optimise-store = true;
+      # remote builders use binary cache
+      builders-use-substitutes = true;
+      # set finite timeout for binary cache
+      connect-timeout = 5;
+      # don't stop building if one of builds fails
+      keep-going = true;
+      # longer logs, default - 10
+      log-lines = 25;
+      # prevent out of disk space
+      max-free = 4096 * 1024 * 1024;
+      min-free = 512 * 1024 * 1024;
+      # show full trace on eval errors
+      show-trace = true;
+      # call sync before registering store paths
+      sync-before-registering = true;
+      # add @wheel to trusted users
+      trusted-users = ["root" "@wheel"];
+      # build in cgroups
+      use-cgroups = true;
+      # cleanup $HOME
+      use-xdg-base-directories = true;
+
+      # additional binary caches
+      substituters = [
+        "https://cache.nixos.org"
+        "https://nix-community.cachix.org"
+        "https://nixpkgs-unfree.cachix.org"
+      ];
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
+      ];
+    };
+
+    # low priority
+    daemonCPUSchedPolicy = "batch";
+    daemonIOSchedClass = "idle";
+    daemonIOSchedPriority = 7;
+  };
+
+  # kill builds before other services
+  systemd.services.nix-daemon.serviceConfig.OOMScoreAdjust = 250;
+
+  # use new switch
+  system.switch = {
+    enable = false;
+    enableNg = true;
+  };
+}
