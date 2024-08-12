@@ -30,7 +30,7 @@
 
     environment.sessionVariables = {
       MOZ_ENABLE_WAYLAND = lib.mkDefault "1";
-      NIXOS_OZONE_WL = lib.mkDefault "1";
+      # NIXOS_OZONE_WL = lib.mkDefault "1";
     };
   };
 }
