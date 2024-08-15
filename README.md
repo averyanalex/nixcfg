@@ -1,5 +1,16 @@
 # Nixcfg
 
+## Useful links
+
+- <https://search.nixos.org/packages> - packages search
+- <https://search.nixos.org/options> - system options search
+- <https://home-manager-options.extranix.com/> - home manager options search
+- <https://noogle.dev/> - Nix language functions search
+
+## What to read
+
+- <https://nixos.org/guides/nix-pills/04-basics-of-language> and <https://nixos.org/guides/nix-pills/05-functions-and-imports> - introduction to Nix language
+
 ## Example flake.nix
 
 ```nix
@@ -41,4 +52,16 @@
     };
   };
 }
+```
+
+## Useful commands
+
+```shell
+# nix repl with your config (i.e. type config.networking.hostName after launching repl)
+nix --extra-experimental-features repl-flake repl ".#nixosConfigurations.$(hostname)"
+
+# update flake.lock (use --commit-lock-file for automatic commit)
+nix flake update
+# update certain input
+nix flake lock --update-input nixpkgs
 ```
