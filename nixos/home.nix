@@ -13,6 +13,7 @@ in {
         if isHM
         then options.home-manager.users.type.functor.wrapped
         else lib.types.any;
+      default = {};
     };
   };
 
