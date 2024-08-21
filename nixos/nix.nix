@@ -1,8 +1,4 @@
 {
-  pkgs,
-  config,
-  ...
-}: {
   nix = {
     settings = {
       experimental-features = [
@@ -51,6 +47,9 @@
         "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
       ];
     };
+
+    # disable channels (we use flakes)
+    channel.enable = false;
 
     # low priority
     daemonCPUSchedPolicy = "batch";
