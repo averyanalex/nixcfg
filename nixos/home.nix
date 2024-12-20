@@ -11,8 +11,8 @@ in {
     hm = lib.mkOption {
       type =
         if isHM
-        then options.home-manager.users.type.functor.wrapped
-        else lib.types.any;
+        then options.home-manager.users.type.nestedTypes.elemType
+        else lib.types.attrs;
       default = {};
     };
   };
