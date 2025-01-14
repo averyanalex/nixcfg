@@ -11,7 +11,7 @@
     pulse.enable = lib.mkDefault true;
   };
 
-  hardware.pulseaudio.enable = lib.mkIf config.services.pipewire.enable false;
+  services.pulseaudio.enable = lib.mkIf config.services.pipewire.enable false;
 
   hm.services.mpd.extraConfig =
     lib.mkIf
