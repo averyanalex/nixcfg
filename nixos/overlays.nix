@@ -14,5 +14,5 @@ in {
         };
       }))
     inputs)
-    ++ lib.optional (inputs ? nur) inputs.nur.overlay;
+    ++ lib.optional (inputs ? nur) inputs.nur.overlays.default;
 }
