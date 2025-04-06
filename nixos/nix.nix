@@ -3,7 +3,6 @@
     settings = {
       experimental-features = [
         "auto-allocate-uids"
-        "ca-derivations"
         "cgroups"
         "flakes"
         "nix-command"
@@ -26,8 +25,6 @@
       min-free = 512 * 1024 * 1024;
       # show full trace on eval errors
       show-trace = true;
-      # call sync before registering store paths
-      sync-before-registering = true;
       # add @wheel to trusted users
       trusted-users = ["root" "@wheel"];
       # build in cgroups
