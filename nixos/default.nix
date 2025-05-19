@@ -6,7 +6,6 @@
   imports = [
     ./gnome.nix
     ./home.nix
-    ./network.nix
     ./nix.nix
     ./overlays.nix
     ./pipewire.nix
