@@ -56,10 +56,4 @@
 
   # kill builds before other services
   systemd.services.nix-daemon.serviceConfig.OOMScoreAdjust = 250;
-
-  # use new switch
-  system.switch = {
-    enable = false;
-    enableNg = true;
-  };
 }
